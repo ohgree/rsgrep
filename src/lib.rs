@@ -1,3 +1,6 @@
+//! # rsgrep
+//!
+//! `rsgrep` is a utility for simulating unix grep.
 use std::env;
 use std::error::Error;
 use std::fs;
@@ -25,6 +28,16 @@ pub struct Config {
 }
 
 impl Config {
+    /// Create new instance of Config. args is consumed in the process.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// let arg = env::args();
+    /// let config = Config::new(arg)?;
+    ///
+    /// assert_eq!(config, Config { ... });
+    /// ```
     pub fn new(mut args: env::Args) -> Result<Config, &'static str> {
         args.next();
         let query = match args.next() {
